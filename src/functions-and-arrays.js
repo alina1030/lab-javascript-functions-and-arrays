@@ -20,6 +20,8 @@ function findScaryWord(words)
       return null;
      for(i=0;i<words.length;i++)
      return words[i];
+     
+     
 }
 
 // Progression #3: Net Price
@@ -37,30 +39,69 @@ function netPrice(numbers)
 // Progression #4: Calculate the average
 const mixedArr = [63, 122, 'audi', 61, true, 'volvo', '20', 'lamborghini', 38, 156];
 
+/*function add(mixedArr)
+{ sum1=0
+  for(i=0;i<mixedArr.length;i++)
+  {
+     sum1 = sum1 + mixedArr[i];
+  }
+  return sum1;
+}*/
 
-// should return: 463
+
 
 function add(mixedArr)
-{ sum=0; sum1=0;
+{ sum=0; sum1=0; sum2=0; count=0; sum3=0;
    if(mixedArr.length==0)
     return 0;
     
-   for(i=0;i<mixedArr.length;i++)
-   { sum =  sum+mixedArr[i]}
-     return sum;
+   /*for(i=0;i<mixedArr.length;i++)
+     {  if(mixedArr[i]!=0)
+        sum =  sum+mixedArr[i];
 
-  for(i=0;i<mixedArr.length;i++)
-    {
-      if(mixedArr[i]>=65&&mixedArr[i]<=122)
-      {
-        {sum1 = sum1 + mixedArr[i];}
-      }  
-    }
+     }  
+         return sum;  */
+        
+        
+         for(i=0;i<mixedArr.length;i++)
+         {  if(mixedArr[i]==0)
+             return 0;
+            
+             
+            else if(typeof(mixedArr[i])==='number')
+            {
+              
+               sum = sum + mixedArr[i];
+            } 
+            
+            else if(typeof(mixedArr[i])==='string')
+            {
+              
+               sum = sum + mixedArr[i].length;
+            }
+            
+            else if(typeof(mixedArr[i])==='boolean')
+            {
+               sum = sum + Number(mixedArr[i]);
 
-    return sum1;
-   
+            }
+
+            else if((typeof(mixedArr[i])!=='string')||(typeof(mixedArr[i])!=='number')||(typeof(mixedArr[i])!=='boolean'))
+            {
+              
+              throw  Error('Unsupported message');
+            } 
+          
+        }   
+          return sum;
 }
 
+
+
+
+
+
+// should return: 463
 
 
 // Progression 4.1: Array of numbers
@@ -85,13 +126,27 @@ function averageWordLength(wordsArr)
     return null;
 
     for(i=0;i<wordsArr.length;i++)
-     sum = sum + wordsArr[i];
+     {sum = sum + wordsArr[i].length;}
 
      avg1 = sum/wordsArr.length;
-
      return avg1;
 }
 
+// Progression 4.3 (Bonus): A generic avg() function
+function avg(mixedArr)
+{ sum=0; average=0;
+  if(mixedArr.length==0)
+    return null;
+
+   for(i=0;i<mixedArr.length;i++)
+   {  if(typeof(mixedArr[i])==='number')
+     sum = sum + mixedArr[i];
+     else if(typeof(mixedArr[i])==='string')
+     sum = sum + mixedArr[i].length;
+   }
+   average = (sum/mixedArr.length).toFixed(2);
+   return average;
+}
 
 // Progression #5: Unique arrays
 const wordsUnique = [
@@ -152,36 +207,26 @@ const wordsCount = [
 ];
 
 
-function howManyTimesElementRepeated(wordsCount)
-{  count=0;
+function howManyTimesElementRepeated(wordsCount,wordsearch)
+{  count=0; 
     if(wordsCount.length==0)
      return 0;
-
-     for(i=0;i<wordsCount.length;i++)
-     {
-       for(j=0;j<wordsCount.length;j++)
-       {
-         if(wordsCount[i]==wordsCount[j])
-           return 1;
-         
-       }
-     }
-
     
-  
-     for(i=0;i<wordsCount.length;i++)
-     { count=0;
-       for(j=0;j<wordsCount.length;j++)
-      { 
-        if(wordsCount[i]==wordsCount[j])
-          count++; 
-        else
-        continue;  
-      } 
-    }
-    if(count==5)
-        return 5;
-     
+    
+        for(i=0;i<wordsCount.length;i++)
+        {
+          if(wordsCount[i]!=wordsearch)
+            return 0;
+        }
+        
+        for(i=0;i<wordsCount.length;i++)
+        {
+          if(wordsCount[i]==wordsearch)
+          
+            count++; 
+        }
+      return count;
+             
        
 }
 // Progression #8: Bonus
